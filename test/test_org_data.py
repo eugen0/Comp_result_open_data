@@ -1,5 +1,5 @@
 import unittest
-import utility.org_data.org_data as org_data
+from utility.org_data import org_data
 import csv
 
 class MyTestCase(unittest.TestCase):
