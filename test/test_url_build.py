@@ -4,17 +4,17 @@ import utility.url.url_build as build
 class BuildUrl(unittest.TestCase):
 
     def test_build_url(self):
-        ''' Testing build of general url:
+        ''' build of general url:
          base - "https://data.gov.ro/api/3/action/",
          path "package_list"
-         expecting : "https://data.gov.ro/api/3/action/package_list" '''
+        expecting : "https://data.gov.ro/api/3/action/package_list" '''
         base = "https://data.gov.ro/api/3/action/"
         path = "package_list"
         address = build.build_url(base, path)
         self.assertEqual(address, "https://data.gov.ro/api/3/action/package_list")
 
     def test_build_url_by_id(self):
-        ''' Testing building url by providing id :
+        ''' Testing building url by providing base, path, id :
             base : "https://data.gov.ro/api/3/action/"
             path : "package_show"
             id   : "venit-net"

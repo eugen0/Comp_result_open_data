@@ -1,17 +1,33 @@
 from urllib.request import urlopen
-
 import json
-# valid url
+
+
 def valid_url(url):
+    """
+     check if url return success
+
+    :param url: eg.'https://data.gov.ro/api/3/action/package_list'
+
+    :return: returns bool from success status of url
+    """
+
     response = urlopen(url).read()
     json_format = json.loads(response)
     return json_format['success']
 
 # get available packages
 def get_avlb_package(url):
-    respose_test = urlopen(url).read()
-    json_data_test = json.loads(respose_test)
-    return json_data_test
+    """
+    Checks if url returns a payload
+
+    :param url: eg. 'https://data.gov.ro/api/3/action/package_list'
+
+    :return: expected a list of available payload if 0
+    """
+
+    response = urlopen(url).read()
+    json_data = json.loads(response)
+    return json_data['result']
 
 
 

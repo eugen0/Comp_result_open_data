@@ -1,4 +1,4 @@
-#assuming that db in psql
+#assuming that db is psql
 
 import psycopg2
 
