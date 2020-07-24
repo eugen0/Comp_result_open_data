@@ -7,9 +7,12 @@ def build_inset_tbl_comp_name():
     imports CREATE TABLE Command from Company tables located in db_create_tab_comp_names.sql
     :return: string of create table cmd
     """
-    dir_path = "../utility/db/"
+    # build paths
+    dir_path = "../utility/db"
+    file_list = os.listdir(dir_path)
     file = "db_create_tab_comp_name.sql"
-    file_path = os.path.join(dir_path, file)
+    index = file_list.index(file)
+    file_path = os.path.join(dir_path, file_list[index])
 
     # open sql text
     with open(file_path, 'r') as sql_f:

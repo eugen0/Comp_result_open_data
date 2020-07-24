@@ -1,17 +1,24 @@
-import unittest, psycopg2
-#from utility.db import db_controller
+import unittest
 import utility.db.db_controller as db_controller
+import utility.db
 
 class TestCreateTable(unittest.TestCase):
     def test_create_tb_comp_name_cmd(self):
+        pass
         #conn to bd
-        # db check if tables is present in db, at teh moment not sure what db is and what it will return 
+        # db check if tables is present in db, at teh moment not sure what db is
         cmd = db_controller.build_inset_tbl_comp_name()
         self.assertIsNotNone(cmd)
 
     def test_insert_command(self):
-       pass
-
-
+        row = {'cod_fiscal':'4563023', 'nume':'SCOALA AJUTORARE BLAJ', 'stare':'RADIERE',\
+        'tva':'NU', 'loc':'Blaj', 'sect': '', 'str': '1848', 'nr': '     11', 'fax': '         0',\
+        'tel': '    710566', 'cp':'', 'detalii_adresa': '', 'bloc': '', 'scara': '', 'etaj': '', 'ap': ''}
+        in_cmd = db_controller.build_insert_cmd_comp_name(row)
+        res = "INSERT INTO Company (cod_fiscal,nume,stare,tva,loc,str,nr,fax,tel) VALUES ('4563023','SCOALA AJUTORARE BLAJ','RADIERE','NU','Blaj','1848','     11','         0','    710566');"
+        false_res ="INSERT INTO Alocard (cod_fiscal,nume,stare,tva,loc,str,nr,fax,tel) VALUES ('4563023','SCOALA AJUTORARE BLAJ','RADIERE','NU','Blaj','1848','     11','         0','    710566');"
+        self.assertIsNotNone(in_cmd)
+        self.assertEqual(res, in_cmd)
+        self.assertNotEqual(false_res, in_cmd)
 if __name__ == '__main__':
     unittest.main()
