@@ -1,6 +1,6 @@
 import unittest
-from utility.url import url_response as url
-
+#from utility.url import url_response as url
+import utility.url.url_response as url
 
 class UrlResponse(unittest.TestCase):
 

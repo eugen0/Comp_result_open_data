@@ -1,5 +1,6 @@
 import unittest
-from utility.url import url_build as build
+import utility.url.url_build as build
+#from utility.url import url_build as build
 
 class BuildUrl(unittest.TestCase):
 

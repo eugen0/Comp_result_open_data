@@ -3,3 +3,6 @@ language:
 
 install:
   - pip install -r requrements.txt
+
+script:
+  - python -m unittest discover
