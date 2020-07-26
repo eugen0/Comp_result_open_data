@@ -10,11 +10,12 @@ class UrlResponse(unittest.TestCase):
         address = 'https://data.gov.ro/api/3/action/package_list'
         try:
             test_url = url.valid_url(address)
+            self.assertTrue(test_url)
         except urllib.error.URLError as url_error:
             print(url_error)
         except ssl.SSLError as ssl_error:
             print(ssl_error)
-        self.assertTrue(test_url)
+
 
     # url get a response
     def test_url_res_carry_something(self):
@@ -23,12 +24,14 @@ class UrlResponse(unittest.TestCase):
         try:
             respons = url.get_avlb_package(address)
             pos = len(respons)
+            self.assertTrue(pos > 0)
+
         except urllib.error.URLError as url_error:
             print(url_error)
         except ssl.SSLError as ssl_error:
             print(ssl_error)
 
-        self.assertTrue(pos > 0)
+
 
 
 if __name__ == '__main__':
