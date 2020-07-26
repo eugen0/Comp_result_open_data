@@ -5,8 +5,8 @@ import csv
 
 class MyTestCase(unittest.TestCase):
     def test_build_filenames_path(self):
-        path = "./utility/data/comp_names"
-        list_file_names = org_data.build_filename_path(path)
+        dir = ".//utility//data//comp_names"
+        list_file_names = org_data.build_filename_path(dir)
         self.assertEqual(len(list_file_names), 43)
 
     def test_keep_only_comp_name_info(self):
