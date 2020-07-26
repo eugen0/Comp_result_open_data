@@ -11,7 +11,7 @@ def build_url(base, path):
     return urljoin(base, path)
 
 
-def build_url_by_id( base, package, tag):
+def build_url_by_id(base, package, tag):
     '''
     Building url by providing base, path, id :
 

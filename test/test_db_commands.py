@@ -1,13 +1,15 @@
 import unittest
 import utility.db.db_controller as db_controller
-import utility.db
+
 
 class TestCreateTable(unittest.TestCase):
     def test_create_tb_comp_name_cmd(self):
-        pass
         #conn to bd
         # db check if tables is present in db, at teh moment not sure what db is
-        cmd = db_controller.build_inset_tbl_comp_name()
+        # build paths
+        dir_path = "./utility/db"
+        file = "db_create_tab_comp_name.sql"
+        cmd = db_controller.build_inset_tbl_comp_name(dir_path, file)
         self.assertIsNotNone(cmd)
 
     def test_insert_command(self):

@@ -2,15 +2,13 @@ import psycopg2, os, csv
 from utility.org_data.org_data_base import build_filename_path
 
 
-def build_inset_tbl_comp_name():
+def build_inset_tbl_comp_name(dir_path, file):
     """
     imports CREATE TABLE Command from Company tables located in db_create_tab_comp_names.sql
     :return: string of create table cmd
     """
     # build paths
-    dir_path = "../utility/db"
     file_list = os.listdir(dir_path)
-    file = "db_create_tab_comp_name.sql"
     index = file_list.index(file)
     file_path = os.path.join(dir_path, file_list[index])
 
@@ -34,7 +32,7 @@ def build_insert_cmd_comp_name(file_row):
     sec_part_cmd = "VALUES ("
     for x in file_row:
         # if missing values no need for column
-        if file_row[x] is "":
+        if not file_row[x]:
             continue
         else:
             # add column
@@ -58,15 +56,19 @@ def export_comp_names(dir_path, db_name_, user_, password_, host_ ):
     :param files_list: list of files to extract data from
     :return: none
     """
-    #### create a table in db
+    #### create a table in db ######
     # connect to db
     db = psycopg2.connect(database=db_name_, user=user_, password=password_, host=host_)
 
     # get the cursor
     cursor = db.cursor()
 
+    # build paths
+    db_path = "../utility/db"
+    file = "db_create_tab_comp_name.sql"
+
     # inset table cmd
-    cmd = build_inset_tbl_comp_name()
+    cmd = build_inset_tbl_comp_name(db_path, file)
 
     # execute create table
     cursor.execute(cmd)
