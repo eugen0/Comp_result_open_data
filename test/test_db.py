@@ -1,5 +1,6 @@
 import unittest
 import utility.db.util_db as util
+from utility.db.db_controller import ImportCompName
 
 
 class DbTest(unittest.TestCase):
@@ -29,12 +30,9 @@ class DbTest(unittest.TestCase):
             if 'demon' in x:
                 self.assertTrue('demon' in x)
 
-
         # exct sql_file
         sql_file = '../utility/db/tables_sql'
         db.execute_sql_file(sql_file)
-
-
         query1 = "DROP DATABASE Demon;"
         db.execute_query(query1)
         ret = db.select_query("SELECT datname FROM pg_database;")
@@ -44,6 +42,27 @@ class DbTest(unittest.TestCase):
 
         # dic
         db.disconnect()
+
+
+class InsertIntoDb(unittest.TestCase):
+    def test_file_read(self):
+        config_file = '../utility/db/database.ini'
+        file_dir_path = '../utility/data/comp_names'
+        db_insert = ImportCompName(config_file, config_section='postgresql', file_dir_path=file_dir_path)
+
+        # check connection
+        self.assertIsNotNone(db_insert.connection)
+        print(db_insert.print_conn())
+
+        db_insert.read_comp_names()
+
+        self.assertTrue(db_insert.read_file)
+
+        db_insert.import_comp_names()
+
+        self.assertEqual(True, False)
+
+
 
 if __name__ == '__main__':
     unittest.main()

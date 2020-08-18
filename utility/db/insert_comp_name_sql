@@ -1,0 +1,3 @@
+with rows as (INSERT INTO Companie(CodFiscal, Nume, Stare, TVA) VALUES ( {1}, {2}, {3}, {4}) RETURNING ID INTO)\
+INSERT INTO Adresa (Localitate, Sector, Str, Nr, Fax, Tel, CodPostal, DetaliiAdresa, Bloc, Scara, Etaj, Ap, companie_id) \
+SELECT {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}, id from rows RETURNING *);

@@ -13,7 +13,7 @@ data/
 .idea
 
 # db
-database.ini
+.database.ini
 
 
 # Distribution / packaging
