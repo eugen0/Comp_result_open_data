@@ -1,0 +1,83 @@
+CREATE TABLE Companie(
+    id SERIAL NOT NULL PRIMARY KEY,
+    CodFiscal VARCHAR(50) NOT NULL,
+    Nume TEXT,
+    STARE VARCHAR(50),
+    TVA BOOLEAN
+);
+
+CREATE TABLE CodCaen(
+	id SERIAL NOT NULL PRIMARY KEY,
+	Caen VARCHAR(100),
+	Caeno VARCHAR(100),
+	companie_id BIGINT REFERENCES Companie(id)
+);
+
+CREATE TABLE Adresa (
+	id SERIAL NOT NULL PRIMARY KEY,
+	Localitate TEXT,
+	Sector VARCHAR(50),
+	Str TEXT,
+	Nr VARCHAR(50),
+	Fax VARCHAR(50),
+	Tel VARCHAR(50),
+	CodPostal VARCHAR(50),
+	DetaliiAdresa TEXT,
+	Bloc VARCHAR(50),
+	Scara VARCHAR(50),
+	Etaj VARCHAR(50),
+	Ap VARCHAR(50),
+	companie_id BIGINT REFERENCES Companie(id)
+);
+
+CREATE TABLE An(
+	id serial NOT NULL PRIMARY KEY,
+	An BIGINT NOT NULL,
+	companie_id BIGINT NOT NULL references Companie(id)
+);
+
+CREATE TABLE Profit(
+	id SERIAL NOT NULL PRIMARY KEY,
+	ProfitBrut BIGINT,
+	ProfitNet BIGINT
+);
+
+CREATE TABLE Pierdere(
+	id SERIAL NOT NULL PRIMARY KEY,
+	PierdereBrut BIGINT,
+	PierdereNet BIGINT
+);
+
+CREATE TABLE Venit(
+	id SERIAL NOT NULL PRIMARY KEY,
+	VenitAvans BIGINT,
+	VenitTotal BIGINT,
+	VenitSpecial BIGINT,
+	VenitAsigViata BIGINT,
+	VenitAsigGen BIGINT,
+	VenitBrok BIGINT
+);
+
+CREATE TABLE Cheltuieli(
+    id SERIAL NOT NULL PRIMARY KEY,
+    CheltuieliAvans BIGINT,
+    Cheltuieli BIGINT
+);
+
+CREATE TABLE DateFiscale(
+	id SERIAL NOT NULL PRIMARY KEY,
+	ActiveImobilizate BIGINT,
+	ActiveCirculante BIGINT,
+	Datorii BIGINT,
+	Provisioane BIGINT,
+	Capital BIGINT,
+	NumarSalariati INT,
+	cheltuieli_id BIGINT REFERENCES Cheltuieli(id),
+	venit_id BIGINT  REFERENCES Venit(id),
+	pierdere_id BIGINT  REFERENCES Pierdere(id),
+	profit_id BIGINT  REFERENCES Profit(id),
+	an_id  BIGINT REFERENCES An(id),
+	companie_id BIGINT REFERENCES Companie(id)
+);
+--DROP DATABASE Demo;
+

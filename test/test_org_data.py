@@ -6,7 +6,7 @@ import csv
 class MyTestCase(unittest.TestCase):
     def test_build_filenames_path(self):
         pass
-        ## git bug do not hold data folder
+        ## github not hold data folder
         #dir = ".//utility//data//comp_names"
         #list_file_names = org_data.build_filename_path(dir)
         #self.assertEqual(len(list_file_names), 43)
