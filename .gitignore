@@ -12,9 +12,8 @@ __pycache__/
 data/
 .idea
 
-# db
-.database.ini
-
+# dbdatabase.ini
+utility/db/database.ini
 
 # Distribution / packaging
 .Python
